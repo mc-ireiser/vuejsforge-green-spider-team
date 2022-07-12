@@ -5,11 +5,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+
 interface Idata {
   ok: boolean;
 }
 
-export default {
+export default defineComponent({
   name: "BoardsPage",
 
   data(): Idata {
@@ -25,5 +27,5 @@ export default {
   computed: {},
 
   methods: {},
-};
+});
 </script>
