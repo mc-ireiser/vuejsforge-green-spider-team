@@ -1,5 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9a0f92a3-7b6b-46fd-9670-2e2f183545d9/deploy-status)](https://app.netlify.com/sites/vuejsforge-green-spider/deploys)
 
+Live On https://vuejsforge-green-spider.netlify.app
+
 # vue-forge-boilerplate
 
 This template should help get you started developing with Vue 3 in Vite.
