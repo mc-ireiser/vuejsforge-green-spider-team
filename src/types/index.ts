@@ -4,7 +4,7 @@ export interface Resource8base {
   id: ID;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 }
 
 export interface User extends Resource8base {
