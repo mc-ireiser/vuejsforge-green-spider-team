@@ -8,6 +8,44 @@
       @click="toggleDialog"
       >Add new board</kbutton
     >
+    <hr v-if="hasBoards" class="my-4" />
+    <div class="flex flex-wrap gap-4 mb-4 cards-container">
+      <div v-for="(board, index) in boards" :key="index">
+        <card
+          style="
+            width: 260px;
+            box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+          "
+        >
+          <cardHeader class="k-hbox" style="background: transparent">
+            <div>
+              <cardTitle style="margin-bottom: 4px">
+                {{ board.title }}
+              </cardTitle>
+              <cardSubtitle>
+                <p>{{ board.createdAt }}</p>
+              </cardSubtitle>
+            </div>
+          </cardHeader>
+          <cardImage
+            :src="typeof board.image === 'string' ? board.image : ''"
+            style="height: 185px; max-width: 100%"
+          />
+          <cardActions style="display: flex; justify-content: space-between">
+            <div>
+              <kbutton
+                :fill-mode="'flat'"
+                :icon="'trash'"
+                @click="deleteBoard(index)"
+              >
+              </kbutton>
+            </div>
+          </cardActions>
+        </card>
+      </div>
+    </div>
+    <hr v-if="hasBoards" />
 
     <br /><br />
     <AppButton class="block">
@@ -48,6 +86,14 @@ import { defineComponent } from "vue";
 import { Button } from "@progress/kendo-vue-buttons";
 import { Window } from "@progress/kendo-vue-dialogs";
 import { Input } from "@progress/kendo-vue-inputs";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardSubtitle,
+  CardImage,
+  CardActions,
+} from "@progress/kendo-vue-layout";
 
 export default defineComponent({
   name: "BoardsPage",
@@ -56,6 +102,12 @@ export default defineComponent({
     kbutton: Button,
     window: Window,
     kinput: Input,
+    card: Card,
+    cardHeader: CardHeader,
+    cardTitle: CardTitle,
+    cardSubtitle: CardSubtitle,
+    cardImage: CardImage,
+    cardActions: CardActions,
   },
 
   data() {
@@ -77,3 +129,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.cards-container {
+  overflow: scroll;
+  max-height: 70vh;
+}
+</style>
