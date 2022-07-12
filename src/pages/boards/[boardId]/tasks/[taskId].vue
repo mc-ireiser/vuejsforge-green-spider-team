@@ -1,6 +1,9 @@
 <template>
   <div>
     <p>{{ $options.name }}</p>
+    <AppButton class="block">
+      <router-link to="/boards/1">Go back</router-link>
+    </AppButton>
   </div>
 </template>
 

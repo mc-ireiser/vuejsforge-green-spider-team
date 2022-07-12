@@ -11,6 +11,9 @@
       <AppButton class="block">
         <a href="https://vi.to/hubs/vueforge" target="_blank">Get Started</a>
       </AppButton>
+      <AppButton class="block">
+        <router-link to="/boards">Boards</router-link>
+      </AppButton>
     </div>
   </div>
 </template>
