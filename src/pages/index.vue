@@ -7,6 +7,7 @@
         src="https://vuejsforge.com/images/logo.svg"
         alt="Vue.js Forge"
       />
+      <h1>You did it!</h1>
       <AppButton class="block">
         <a href="https://vi.to/hubs/vueforge" target="_blank">Get Started</a>
       </AppButton>
