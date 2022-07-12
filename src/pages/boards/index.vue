@@ -65,14 +65,18 @@
 
           <label class="k-form-field">
             <span>Title</span>
-            <kinput placeholder="Board title" />
+            <kinput v-model="newBoard.title" placeholder="Board title" />
           </label>
         </fieldset>
 
         <div class="text-right mt-6">
           <kbutton @click="toggleDialog">Cancel</kbutton>
           <span class="mr-4"></span>
-          <kbutton :theme-color="'primary'" @click="toggleDialog"
+          <kbutton
+            :theme-color="'primary'"
+            @click.prevent="createNewBoard"
+            @keyup.enter="createNewBoard"
+            :disabled="loading"
             >Submit</kbutton
           >
         </div>
@@ -95,6 +99,8 @@ import {
   CardActions,
 } from "@progress/kendo-vue-layout";
 
+import type { Board } from "@/types/index";
+
 export default defineComponent({
   name: "BoardsPage",
 
@@ -112,7 +118,13 @@ export default defineComponent({
 
   data() {
     return {
+      loading: false,
       visible: false,
+      newBoard: {
+        title: "",
+        imageUrl: undefined,
+      },
+      boards: [] as Board[],
     };
   },
 
@@ -120,11 +132,40 @@ export default defineComponent({
     console.log(this.$options.name);
   },
 
-  computed: {},
+  computed: {
+    hasBoards() {
+      return this.boards?.length > 0;
+    },
+  },
 
   methods: {
     toggleDialog() {
       this.visible = !this.visible;
+    },
+
+    createNewBoard() {
+      this.loading = true;
+      const id = Math.random() * 1000;
+
+      const board: Board = {
+        id: id.toString().split(".")[1],
+        title: this.newBoard.title,
+        image:
+          this.newBoard.imageUrl ||
+          `https://picsum.photos/200/300?random=${id}`,
+        order: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      this.boards.push(board);
+      this.newBoard = { title: "", imageUrl: undefined };
+      this.loading = false;
+      this.toggleDialog();
+    },
+
+    deleteBoard(boardIndex: number) {
+      this.boards.splice(boardIndex, 1);
     },
   },
 });
