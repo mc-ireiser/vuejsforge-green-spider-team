@@ -23,7 +23,7 @@ export interface Board extends Resource8base {
   order: string | Column[];
 
   // relationships
-  image?: Partial<File>;
+  image?: Partial<File> | string;
   tasks?: Partial<Task>[];
 }
 
