@@ -152,7 +152,7 @@ export default defineComponent({
         title: this.newBoard.title,
         image:
           this.newBoard.imageUrl ||
-          `https://picsum.photos/200/300?random=${id}`,
+          `https://picsum.photos/258/185?random=${id}`,
         order: [],
         createdAt: new Date(),
         updatedAt: new Date(),
