@@ -29,10 +29,6 @@
             <span>Title</span>
             <kinput placeholder="Board title" />
           </label>
-          <label class="k-form-field">
-            <span>Description</span>
-            <kinput placeholder="Board description" />
-          </label>
         </fieldset>
 
         <div class="text-right mt-6">
