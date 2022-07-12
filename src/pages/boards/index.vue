@@ -16,9 +16,10 @@
 
     <window
       v-if="visible"
-      :title="'Status'"
+      :title="'Add new board'"
       @close="toggleDialog"
-      :initial-height="350"
+      :initial-width="650"
+      :initial-height="250"
     >
       <form class="k-form">
         <fieldset>
