@@ -174,6 +174,7 @@ export default defineComponent({
 <style>
 .cards-container {
   overflow: scroll;
+  height: 70vh;
   max-height: 70vh;
 }
 </style>
