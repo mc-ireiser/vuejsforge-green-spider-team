@@ -1,10 +1,10 @@
 type ID = string;
 
 export interface Resource8base {
-  id: ID;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date;
+  id?: ID;
+  createdAt?: Date | null;
+  updatedAt?: Date | null;
+  deletedAt?: Date | null;
 }
 
 export interface User extends Resource8base {
