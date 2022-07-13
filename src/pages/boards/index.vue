@@ -47,13 +47,13 @@
     </div>
     <hr v-if="hasBoards" />
 
-    <br /><br />
-    <AppButton class="block">
+    <AppButton class="block mt-4">
       <router-link to="/boards/1">go to Board 1</router-link>
     </AppButton>
 
     <window
       v-if="visible"
+      :modal="true"
       :title="'Add new board'"
       @close="toggleDialog"
       :initial-width="650"
