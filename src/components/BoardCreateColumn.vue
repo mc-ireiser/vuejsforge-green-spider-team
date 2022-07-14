@@ -73,8 +73,6 @@ export default defineComponent({
         title: this.newColumn.title,
         taskIds: [],
       };
-      console.log(boardId, newColumn);
-
       useBoardsStore().createColumn(boardId, newColumn);
       this.newColumn = { title: "" };
       this.loading = false;
