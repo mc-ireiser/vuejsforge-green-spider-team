@@ -1,4 +1,4 @@
-import type { Board, Column } from "@/types/index";
+import type { Board, Column, Task } from "@/types/index";
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { setStorage } from "@/composables/storage";
 
@@ -10,6 +10,16 @@ export const useBoardsStore = defineStore("boardStore", {
   actions: {
     updateBoards(boards: Board[]) {
       this.boards = boards;
+      setStorage("boards", this.boards);
+    },
+
+    updateBoardColumns(board: Board) {
+      const boardIndex = this.boards.findIndex((b) => b.id === board.id);
+      if (boardIndex === -1) {
+        this.boards.push(board);
+      } else {
+        this.boards[boardIndex] = board;
+      }
       setStorage("boards", this.boards);
     },
 
@@ -34,10 +44,25 @@ export const useBoardsStore = defineStore("boardStore", {
         setStorage("boards", this.boards);
       }
     },
+
+    createTask(boardId: string, columnId: string, taskData: Task) {
+      const board = this.boards.find((board) => board.id === boardId);
+      if (!board) return;
+      const column = board.order.find((column) => column.id === columnId);
+      if (!column) return;
+      if (column.tasks instanceof Array) {
+        column.tasks.push(taskData);
+        setStorage("boards", this.boards);
+      }
+    },
   },
 
   getters: {
     getBoards: (state) => state.boards,
+    getBoardById: (state) => {
+      return (boardId: string) =>
+        state.boards.filter((board) => board.id === boardId)[0];
+    },
   },
 });
 
