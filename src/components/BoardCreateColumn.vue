@@ -71,7 +71,7 @@ export default defineComponent({
       const newColumn: Column = {
         id,
         title: this.newColumn.title,
-        taskIds: [],
+        tasks: [],
       };
       useBoardsStore().createColumn(boardId, newColumn);
       this.newColumn = { title: "" };

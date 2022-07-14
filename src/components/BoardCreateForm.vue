@@ -18,7 +18,6 @@
       <form class="k-form">
         <fieldset>
           <legend>Board Details</legend>
-
           <label class="k-form-field">
             <span>Title</span>
             <kinput v-model="newBoard.title" placeholder="Board title" />

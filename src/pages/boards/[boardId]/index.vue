@@ -1,27 +1,23 @@
 <template>
   <div>
     <p>{{ board.title }}</p>
-
     <BoardCreateColumn></BoardCreateColumn>
-    <br />
-    <BoardColumn></BoardColumn>
-
-    <br />
-    <AppButton class="block">
-      <router-link to="/boards/1/tasks/1">go to Task 1</router-link>
-    </AppButton>
+    <BoardColumns class="mt-4" :boardData="getBoard(boardId)"></BoardColumns>
   </div>
 </template>
 
 <script lang="ts">
 import type { Board } from "@/types/index";
 import { defineComponent } from "vue";
+import { useBoardsStore } from "@/stores/boards";
+import { mapState } from "pinia";
 
 export default defineComponent({
   name: "BoardPage",
   data() {
     return {
       board: {} as Board,
+      boardId: this.$route.params.boardId as string,
     };
   },
   mounted() {

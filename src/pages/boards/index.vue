@@ -16,10 +16,6 @@
       </div>
     </div>
     <hr v-if="hasBoards" />
-
-    <AppButton class="block mt-4">
-      <router-link to="/boards/1">go to Board 1</router-link>
-    </AppButton>
   </div>
 </template>
 
@@ -68,7 +64,7 @@ export default defineComponent({
 <style>
 .cards-container {
   overflow: scroll;
-  height: 70vh;
-  max-height: 70vh;
+  height: 75vh;
+  max-height: 75vh;
 }
 </style>

@@ -20,7 +20,7 @@ export interface Board extends Resource8base {
 
   // Board order JSON encoded in DB and thus can be a string
   // when decoded it's an array of Columns
-  order: string | Column[];
+  order: Column[];
 
   // relationships
   image?: Partial<File> | string;
@@ -30,14 +30,14 @@ export interface Board extends Resource8base {
 export interface Column {
   id: ID;
   title: string;
-  taskIds: ID[];
+  tasks: Task[];
 }
 
 export interface Task extends Resource8base {
   title: string;
   description: string;
   labels: Label[];
-  dueAt: Date;
+  dueAt: Date | string;
 
   // relationships
   board?: Partial<Board>;
