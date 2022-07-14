@@ -115,11 +115,14 @@ export default defineComponent({
   padding: 10px;
   margin: 10px;
   background-color: aliceblue;
+  border-color: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
 }
 
 .empty-column {
   padding: 30px;
   margin: 10px;
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.5);
 }
 </style>
