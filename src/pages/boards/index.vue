@@ -27,7 +27,6 @@
 import type { Board } from "@/types/index";
 import { defineComponent } from "vue";
 import { mapState } from "pinia";
-import { setStorage } from "@/composables/storage";
 import { useBoardsStore } from "@/stores/boards";
 
 export default defineComponent({
@@ -60,7 +59,6 @@ export default defineComponent({
     },
     deleteBoard(boardIndex: number) {
       this.boards.splice(boardIndex, 1);
-      // setStorage("boards", this.boards);
       useBoardsStore().updateBoards(this.boards);
     },
   },

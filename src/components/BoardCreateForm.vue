@@ -47,8 +47,8 @@ import { defineComponent } from "vue";
 import { Button } from "@progress/kendo-vue-buttons";
 import { Window } from "@progress/kendo-vue-dialogs";
 import { Input } from "@progress/kendo-vue-inputs";
-import { setStorage } from "@/composables/storage";
 import { useBoardsStore } from "@/stores/boards";
+import { v4 as uuid } from "uuid";
 
 export default defineComponent({
   components: {
@@ -82,29 +82,23 @@ export default defineComponent({
 
     createNewBoard() {
       this.loading = true;
-      const id = Math.random() * 1000;
-
+      const id = uuid();
       const board: Board = {
-        id: id.toString(),
+        id,
         title: this.newBoard.title,
         image:
           this.newBoard.imageUrl ||
           `https://picsum.photos/258/185?random=${id}`,
         order: [],
+        tasks: [],
         createdAt: new Date(),
         updatedAt: new Date(),
       };
 
       useBoardsStore().createBoard(board);
-
-      // const boards = [...this.boards];
-      // boards.push(board);
-      // setStorage("boards", boards);
-
       this.newBoard = { title: "", imageUrl: undefined };
       this.loading = false;
       this.toggleDialog();
-      // this.$emit("BOARD_CREATED");
     },
   },
 });
