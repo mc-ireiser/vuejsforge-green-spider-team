@@ -14,6 +14,7 @@
     "kui-activate": "npx kendo-ui-license activate"
   },
   "dependencies": {
+    "@progress/kendo-vue-dateinputs": "^3.4.3",
     "@vue/apollo-composable": "^4.0.0-alpha.18",
     "@vueuse/core": "^8.9.2",
     "graphql-tag": "^2.12.6",
@@ -23,8 +24,8 @@
     "uuid": "^8.3.2",
     "vite-plugin-pages": "^0.24.3",
     "vue": "^3.2.37",
-    "vue-router": "^4.0.16",
-    "vuedraggable": "^2.24.3"
+    "vue-draggable-next": "^2.1.1",
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@progress/kendo-licensing": "^1.2.2",
