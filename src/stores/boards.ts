@@ -1,6 +1,5 @@
-import type { Board } from "@/types/index";
+import type { Board, Column } from "@/types/index";
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { v4 as uuid } from "uuid";
 import { setStorage } from "@/composables/storage";
 
 export const useBoardsStore = defineStore("boardStore", {
@@ -16,7 +15,7 @@ export const useBoardsStore = defineStore("boardStore", {
 
     createBoard(boardData: Board) {
       const board = {
-        id: uuid(),
+        id: boardData.id,
         title: boardData.title,
         image: boardData.image,
         order: [],
@@ -25,6 +24,15 @@ export const useBoardsStore = defineStore("boardStore", {
       };
       this.boards.push(board);
       setStorage("boards", this.boards);
+    },
+
+    createColumn(boardId: string, columnData: Column) {
+      const board = this.boards.find((board) => board.id === boardId);
+      if (!board) return;
+      if (board.order instanceof Array) {
+        board.order.push(columnData);
+        setStorage("boards", this.boards);
+      }
     },
   },
 
