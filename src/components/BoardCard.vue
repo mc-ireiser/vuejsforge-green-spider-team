@@ -13,7 +13,7 @@
             {{ boardIndex + 1 }}. {{ board.title }}
           </cardTitle>
           <cardSubtitle>
-            <p>{{ board.createdAt.toString().split("T")[0] }}</p>
+            <p>{{ board?.createdAt?.toString().split("T")[0] }}</p>
           </cardSubtitle>
         </div>
       </cardHeader>
