@@ -9,8 +9,10 @@ declare module '@vue/runtime-core' {
     BoardCard: typeof import('./src/components/BoardCard.vue')['default']
     BoardColum: typeof import('./src/components/BoardColum.vue')['default']
     BoardColumn: typeof import('./src/components/BoardColumn.vue')['default']
+    BoardColumns: typeof import('./src/components/BoardColumns.vue')['default']
     BoardCreateColumn: typeof import('./src/components/BoardCreateColumn.vue')['default']
     BoardCreateForm: typeof import('./src/components/BoardCreateForm.vue')['default']
+    BoardCreateTask: typeof import('./src/components/BoardCreateTask.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
