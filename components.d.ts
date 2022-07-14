@@ -7,6 +7,9 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppButton: typeof import('./src/components/AppButton.vue')['default']
     BoardCard: typeof import('./src/components/BoardCard.vue')['default']
+    BoardColum: typeof import('./src/components/BoardColum.vue')['default']
+    BoardColumn: typeof import('./src/components/BoardColumn.vue')['default']
+    BoardCreateColumn: typeof import('./src/components/BoardCreateColumn.vue')['default']
     BoardCreateForm: typeof import('./src/components/BoardCreateForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
