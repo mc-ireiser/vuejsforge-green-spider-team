@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="overflow-scroll">
     <p>{{ $options.name }}</p>
     <BoardCreateForm
       :boards="getBoards"
       @BOARD_CREATED="updateBoardsList"
     ></BoardCreateForm>
     <hr v-if="hasBoards" class="my-4" />
-    <div class="flex flex-wrap gap-4 mb-4 cards-container">
+    <div class="flex flex-wrap gap-4 mb-6 mx-2 cards-container">
       <div v-for="(board, index) in getBoards" :key="index">
         <BoardCard
           :board="board"
@@ -64,7 +64,6 @@ export default defineComponent({
 <style>
 .cards-container {
   overflow: scroll;
-  height: 75vh;
-  max-height: 75vh;
+  max-height: 70vh;
 }
 </style>

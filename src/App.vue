@@ -66,15 +66,8 @@ export default defineComponent({
         {
           separator: true,
         },
-        {
-          text: "Notifications",
-          icon: "k-i-bell",
-          data: {
-            path: "/notifications",
-          },
-        },
       ],
-      expanded: true,
+      expanded: false,
       selectedId: 0,
       position: "start",
       mode: "push",
