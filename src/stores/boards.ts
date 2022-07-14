@@ -13,6 +13,16 @@ export const useBoardsStore = defineStore("boardStore", {
       setStorage("boards", this.boards);
     },
 
+    updateBoard(board: Board) {
+      const index = this.boards.findIndex((b) => b.id === board.id);
+      if (index === -1) {
+        return;
+      } else {
+        this.boards[index] = board;
+      }
+      setStorage("boards", this.boards);
+    },
+
     updateBoardColumns(board: Board) {
       const boardIndex = this.boards.findIndex((b) => b.id === board.id);
       if (boardIndex === -1) {

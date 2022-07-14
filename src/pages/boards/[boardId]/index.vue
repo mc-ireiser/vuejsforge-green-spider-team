@@ -2,7 +2,7 @@
   <div>
     <p>{{ board.title }}</p>
     <BoardCreateColumn></BoardCreateColumn>
-    <BoardColumns class="mt-4" :boardData="getBoard(boardId)"></BoardColumns>
+    <BoardColumns :boardData="boardData"></BoardColumns>
   </div>
 </template>
 
@@ -33,6 +33,10 @@ export default defineComponent({
     ...mapState(useBoardsStore, {
       getBoard: (store) => store.getBoardById,
     }),
+
+    boardData() {
+      return this.getBoard(this.boardId);
+    },
   },
   methods: {},
 });

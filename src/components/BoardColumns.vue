@@ -5,7 +5,7 @@
       <draggable
         class="dragArea list-group flex gap-4 mb-4"
         :list="boardData.order"
-        @change="log"
+        @change="updateColumns(boardData)"
       >
         <div
           class="list-group-column bg-gray-300 m-1 p-3 rounded-md text-center"
@@ -17,7 +17,7 @@
             class="dragArea"
             group="tasks"
             :list="column.tasks"
-            @change="log"
+            @change="updateColumns(boardData)"
           >
             <div
               class="list-group-item bg-gray-300 m-1 p-3 rounded-md"
@@ -88,6 +88,9 @@ export default defineComponent({
   methods: {
     log(event: string) {
       console.log(event);
+    },
+    updateColumns(board: Board) {
+      useBoardsStore().updateBoard(board);
     },
     removeBoardColumn(board: Board, columnIndex: number) {
       board.order.splice(columnIndex, 1);
