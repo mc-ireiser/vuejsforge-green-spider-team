@@ -29,7 +29,11 @@ export default defineComponent({
       )[0];
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(useBoardsStore, {
+      getBoard: (store) => store.getBoardById,
+    }),
+  },
   methods: {},
 });
 </script>
