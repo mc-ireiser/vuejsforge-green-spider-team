@@ -1,64 +1,77 @@
 <template>
-  <hr class="my-4" />
-  <div class="mb-4">
-    <div class="drag-container">
-      <draggable
-        class="dragArea list-group flex gap-4 mb-4"
-        :list="boardData.order"
-        @change="updateColumns(boardData)"
-      >
-        <div
-          class="list-group-column bg-gray-300 m-1 p-3 rounded-md text-center"
-          v-for="(column, columnIndex) in boardData.order"
-          :key="column.id"
+  <div>
+    <hr class="my-4" />
+    <div class="mb-4 overflow-scroll">
+      <div class="drag-container">
+        <draggable
+          class="dragArea list-group flex gap-4 mb-4"
+          :list="boardData.order"
+          @change="updateColumns(boardData)"
         >
-          {{ column.title }}
-          <draggable
-            class="dragArea"
-            group="tasks"
-            :list="column.tasks"
-            @change="updateColumns(boardData)"
+          <div
+            class="list-group-column bg-gray-300 rounded-md text-center"
+            v-for="(column, columnIndex) in boardData.order"
+            :key="column.id"
           >
-            <div
-              class="list-group-item bg-gray-300 m-1 p-3 rounded-md"
-              v-for="task in column.tasks"
-              :key="task.id"
+            {{ column.title }}
+            <draggable
+              class="dragArea"
+              group="tasks"
+              :list="column.tasks"
+              @change="updateColumns(boardData)"
             >
-              <div class="text-left full-width flex-grow">
-                <router-link :to="`/boards/${boardData.id}/tasks/${task.id}`">
-                  <span class="k-icon k-i-hyperlink-open mr-2"></span>
-                  <span class="font-bold">{{ task.title }}</span>
-                </router-link>
-                <p class="font-light mt-2 truncate">
-                  {{ task.description }}
-                </p>
+              <div
+                class="list-group-item rounded-md"
+                v-for="task in column.tasks"
+                :key="task.id"
+              >
+                <card
+                  class="card"
+                  style="
+                    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+                    margin-top: 15px;
+                  "
+                >
+                  <cardBody class="flex">
+                    <div class="text-left full-width flex-grow">
+                      <router-link
+                        :to="`/boards/${boardData.id}/tasks/${task.id}`"
+                      >
+                        <span class="k-icon k-i-hyperlink-open mr-2"></span>
+                        <span class="font-bold">{{ task.title }}</span>
+                      </router-link>
+                      <p class="font-light mt-2 truncate">
+                        {{ task.description }}
+                      </p>
+                    </div>
+                  </cardBody>
+                </card>
               </div>
-            </div>
-            <div v-if="column.tasks.length === 0">
-              <div class="empty-column rounded-md full-width">
-                <div class="text-center">
-                  <span class="k-icon k-i-empty-box"></span>
-                  <span class="font-bold">No tasks to do</span>
+              <div v-if="column.tasks.length === 0">
+                <div class="empty-column rounded-md full-width">
+                  <div class="text-center">
+                    <span class="k-icon k-i-empty-box"></span>
+                    <span class="font-bold">No tasks to do</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </draggable>
-          <BoardCreateTask
-            :boardId="boardData.id"
-            :columnId="column.id"
-          ></BoardCreateTask>
-          <kbutton
-            class="mt-4"
-            :icon="'trash'"
-            :fill-mode="'flat'"
-            @click="removeBoardColumn(boardData, columnIndex)"
-            >Remove Board</kbutton
-          >
-        </div>
-      </draggable>
+            </draggable>
+            <BoardCreateTask
+              :boardId="boardData.id"
+              :columnId="column.id"
+            ></BoardCreateTask>
+            <kbutton
+              class="mt-4"
+              :icon="'trash'"
+              :fill-mode="'flat'"
+              @click="removeBoardColumn(boardData, columnIndex)"
+              >Remove Board</kbutton
+            >
+          </div>
+        </draggable>
+      </div>
     </div>
   </div>
-  <hr />
 </template>
 
 <script lang="ts">
@@ -67,11 +80,14 @@ import { defineComponent, type PropType } from "vue";
 import { useBoardsStore } from "@/stores/boards";
 import { VueDraggableNext } from "vue-draggable-next";
 import { Button } from "@progress/kendo-vue-buttons";
+import { Card, CardBody } from "@progress/kendo-vue-layout";
 
 export default defineComponent({
   components: {
     draggable: VueDraggableNext,
     kbutton: Button,
+    card: Card,
+    cardBody: CardBody,
   },
   props: {
     boardData: {
@@ -102,10 +118,10 @@ export default defineComponent({
 
 <style>
 .drag-container {
-  overflow-x: auto;
-  height: 70vh;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  max-width: 85vw;
   max-height: 70vh;
-  width: 90%;
 }
 
 .list-group-column {
@@ -114,18 +130,13 @@ export default defineComponent({
   max-width: 400px;
 }
 
-.list-group-item {
-  padding: 10px;
-  margin: 10px;
-  background-color: aliceblue;
-  border-color: whitesmoke;
-  border-style: solid;
-  border-width: 5px;
-}
-
 .empty-column {
   padding: 30px;
   margin: 10px;
   background-color: rgba(240, 248, 255, 0.5);
+}
+
+card {
+  width: 100%;
 }
 </style>
